@@ -2,6 +2,7 @@ package com.stemgon.spring_core.restapi;
 
 import com.stemgon.spring_core.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ public class DependencyController {
 //    }
 
     @Autowired
-    public void setMyCoach(Coach theCoach){
+    public void setMyCoach(@Qualifier("baseballCoach") Coach theCoach){
         myCoach = theCoach;
     }
 

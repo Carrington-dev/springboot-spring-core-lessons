@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DependencyController {
-    private Coach myCoach;
+    private Coach myCoach, theOther;
 
 //    @Autowired
 //    public DependencyController(Coach theCoach){
@@ -16,8 +16,17 @@ public class DependencyController {
 //    }
 
     @Autowired
-    public void setMyCoach(@Qualifier("baseballCoach") Coach theCoach){
+    public void setMyCoach(@Qualifier("baseballCoach") Coach theCoach, @Qualifier("baseballCoach") Coach myOtherCoach){
+
         myCoach = theCoach;
+        theOther = myOtherCoach;
+
+    }
+
+    @GetMapping("/check")
+    public String checkBeans(){
+        boolean b = theOther == myCoach;
+        return " " + b;
     }
 
     @GetMapping("/dailyworkout")
